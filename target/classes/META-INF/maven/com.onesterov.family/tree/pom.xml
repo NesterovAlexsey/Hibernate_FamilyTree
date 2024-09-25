@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.onesterov.family</groupId>
+  <artifactId>tree</artifactId>
+  <version>1.0.0</version>
+  <name>familyTree</name>
+  <description>web-app for create the tree of family</description>
+  <dependencies>
+  	<!--Hibernate-->
+  	<dependency>
+  		<groupId>org.hibernate.orm</groupId>
+    	<artifactId>hibernate-core</artifactId>
+    	<version>6.6.0.Final</version>
+  	</dependency>
+
+	<!--H2 Database-->
+	<dependency>
+    	<groupId>com.h2database</groupId>
+    	<artifactId>h2</artifactId>
+    	<version>2.2.224</version>
+    </dependency>
+	
+	<!--JPA-->
+ 	<dependency>
+       <groupId>javax.persistence</groupId>
+       <artifactId>javax.persistence-api</artifactId>
+       <version>2.2</version>
+    </dependency>
+
+  </dependencies>
+  <build>
+  	<plugins>
+  		 <!-- Maven Plugin для сборки -->
+  		<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-compiler-plugin</artifactId>
+    		<version>3.11.0</version>
+    		<configuration>
+        	<source>21</source>
+        	<target>21</target>
+    </configuration>
+</plugin>
+
+  	</plugins>
+  </build>
+
+</project>
