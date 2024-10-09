@@ -1,0 +1,36 @@
+# Игнорируем системные папки и файлы Windows
+Anwendungsdaten/
+AppData/
+Cookies/
+Druckumgebung/
+Eigene Dateien/
+Lokale Einstellungen/
+Netzwerkumgebung/
+Recent/
+SendTo/
+Startmenü/
+Vorlagen/
+ntuser.dat*
+
+# Игнорируем пользовательские папки
+3D Objects/
+Contacts/
+Creative Cloud Files/
+Desktop/
+Documents/
+Downloads/
+Favorites/
+Links/
+Music/
+OneDrive/
+Pictures/
+Saved Games/
+Searches/
+Videos/
+
+# Игнорируем временные и конфигурационные файлы
+*.log
+*.tmp
+*.cache
+*.exe
+*.zip
