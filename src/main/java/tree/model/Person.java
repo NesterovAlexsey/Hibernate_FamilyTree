@@ -26,8 +26,8 @@ public class Person {
 	@Column(name = "family_name")
 	private String familyName;
 	
-	@Column(name = "last_name")
-	private String lastName;
+	@Column(name = "first_name")
+	private String firstName;
 	
 	@Column(name = "middle_name")
 	private String middleName;
@@ -59,12 +59,12 @@ public class Person {
 		this.familyName = familyName;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setFirstName(String first) {
+		this.firstName = first;
 	}
 
 	public String getMiddleName() {
@@ -129,7 +129,7 @@ public class Person {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(children, dateOfBirth, dateOfDeath, description, familyName, id, lastName, middleName,
+		return Objects.hash(children, dateOfBirth, dateOfDeath, description, familyName, id, firstName, middleName,
 				parent, profession);
 	}
 
@@ -145,13 +145,13 @@ public class Person {
 		return Objects.equals(children, other.children) && Objects.equals(dateOfBirth, other.dateOfBirth)
 				&& Objects.equals(dateOfDeath, other.dateOfDeath) && Objects.equals(description, other.description)
 				&& Objects.equals(familyName, other.familyName) && Objects.equals(id, other.id)
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(middleName, other.middleName)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(middleName, other.middleName)
 				&& Objects.equals(parent, other.parent) && Objects.equals(profession, other.profession);
 	}
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", familyName=" + familyName + ", lastName=" + lastName + ", middleName="
+		return "Person [id=" + id + ", familyName=" + familyName + ", lastName=" + firstName + ", middleName="
 				+ middleName + ", dateOfBirth=" + dateOfBirth + ", dateOfDeath=" + dateOfDeath + ", profession="
 				+ profession + ", description=" + description + ", children=" + children + ", parent=" + parent + "]";
 	}
