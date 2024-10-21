@@ -12,6 +12,12 @@
     	<artifactId>hibernate-core</artifactId>
     	<version>6.6.0.Final</version>
   	</dependency>
+  	
+  	<dependency>
+    	<groupId>org.hibernate.common</groupId>
+    	<artifactId>hibernate-commons-annotations</artifactId>
+    	<version>6.0.0.Final</version>
+	</dependency>
 
 	<!--H2 Database-->
 	<dependency>
@@ -21,11 +27,12 @@
     </dependency>
 	
 	<!--JPA-->
- 	<dependency>
-       <groupId>javax.persistence</groupId>
-       <artifactId>javax.persistence-api</artifactId>
-       <version>2.2</version>
-    </dependency>
+	<dependency>
+    	<groupId>jakarta.persistence</groupId>
+    	<artifactId>jakarta.persistence-api</artifactId>
+    	<version>3.1.0</version>
+	</dependency>
+
 
   </dependencies>
   <build>
@@ -36,11 +43,10 @@
     		<artifactId>maven-compiler-plugin</artifactId>
     		<version>3.11.0</version>
     		<configuration>
-        	<source>21</source>
-        	<target>21</target>
-    </configuration>
-</plugin>
-
+        		<source>21</source>
+        		<target>21</target>
+    		</configuration>
+		</plugin>
   	</plugins>
   </build>
 

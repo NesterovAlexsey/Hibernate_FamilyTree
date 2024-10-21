@@ -8,6 +8,9 @@ public class HibernateUtil {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
 
 	private static SessionFactory buildSessionFactory() {
+		
+		System.out.println("Loading Hibernate configuration...");
+		
 		try {
 			return new Configuration().configure().buildSessionFactory();
 		}
