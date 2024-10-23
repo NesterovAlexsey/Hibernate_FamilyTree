@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import tree.config.HibernateUtil;
+import tree.model.Person;
 //import tree.model.Person;
 import tree.model.Test;
 
@@ -25,16 +26,25 @@ public class App {
 		session.persist(test);
 		
 		//Create the person
-//		Person person = new Person();
-//		person.setFirstName("Alex");
-//		person.setFamilyName("Nesterov");
-//		person.setProfession("Developer");
+		Person person = new Person();
+		person.setFirstName("Alex");
+		person.setFamilyName("Nesterov");
+		person.setProfession("Developer");
 		
 		//Method save was deprecated
-//		session.persist(person);
+		session.persist(person);
 		
-		//Commit transaction, Close the session, close the connection to db
+		//Commit transaction 
 		transaction.commit();
+		
+		Long personId = person.getId();
+		Session newSession = HibernateUtil.getSessionFactory().openSession();
+		Person personFromDB = newSession.get(Person.class, personId);
+		
+		System.out.println("************Person from db: " + personFromDB);
+		
+		//Close the session, close the connection to db
+		newSession.close();
 		session.close();
 		HibernateUtil.shutdown();
 	}
