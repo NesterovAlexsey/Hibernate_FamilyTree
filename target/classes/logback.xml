@@ -1,0 +1,24 @@
+<configuration>
+    <!-- Консольный аппендер (вывод в консоль) -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Настройка уровней логирования для Hibernate -->
+    <!-- Логгирование на уровне SQL -->
+    <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!-- Логгирование параметров запросов -->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!-- Глобальный уровень логирования -->
+    <root level="WARN">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
