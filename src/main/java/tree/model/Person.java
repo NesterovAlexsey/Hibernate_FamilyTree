@@ -51,6 +51,8 @@ public class Person {
 	@ManyToOne
 	@JoinColumn( name = "parent_id" )
 	private Person parent;
+	
+	//We should add Address, as ManyToOne, and also from-antill
 
 	public String getFamilyName() {
 		return familyName;
