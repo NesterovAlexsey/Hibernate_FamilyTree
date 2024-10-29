@@ -21,5 +21,6 @@ public class Address {
 	@ManyToOne
 	@JoinColumn(name = "countryId", nullable = false)
 	private Country country;
-	//Country, City, Street, Home number, PostCode, AddressFrom, AddressUntill
+	
+	// City, Street, Home number, PostCode, AddressFrom, AddressUntill
 }
