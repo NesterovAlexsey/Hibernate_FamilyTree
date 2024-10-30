@@ -5,8 +5,6 @@ import org.hibernate.Transaction;
 
 import tree.config.HibernateUtil;
 import tree.model.Person;
-//import tree.model.Person;
-import tree.model.Test;
 
 public class App {
 
@@ -19,12 +17,7 @@ public class App {
 		Session session = HibernateUtil.getSessionFactory().openSession();		
 		//Start the transaction
 		Transaction transaction = session.beginTransaction();
-		
-		Test test = new Test();
-		test.setTestInfo("Some test info");
-		
-		session.persist(test);
-		
+				
 		//Create the person
 		Person person = new Person();
 		person.setFirstName("Alex");
