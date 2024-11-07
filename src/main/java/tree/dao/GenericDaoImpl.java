@@ -40,7 +40,7 @@ public abstract class GenericDaoImpl<T, ID> implements GenericDao<T, ID>
 
 	@Override
 	public void delete(T entity) {
-		// TODO Auto-generated method stub
+		entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
 		
 	}
 }
