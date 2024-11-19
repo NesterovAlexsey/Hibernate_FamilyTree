@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public abstract class GenericDaoImpl<T, ID> implements GenericDao<T, ID> 
+public abstract class GenericDaoImpl<T, ID> implements GenericDaoIf<T, ID> 
 {
 	@PersistenceContext
 	protected EntityManager entityManager;

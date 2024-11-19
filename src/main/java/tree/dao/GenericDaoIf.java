@@ -7,7 +7,7 @@ import java.util.List;
  * @param <T> this is the type of entity that the DAO will work with
  * @param <ID> Type for identificator: long, integer
  */
-public interface GenericDao<T, ID> {
+public interface GenericDaoIf<T, ID> {
 	
 	void save(T entity);
 
