@@ -34,6 +34,14 @@
         <artifactId>hibernate-validator</artifactId>
         <version>6.2.0.Final</version>
     </dependency>
+    
+    <!-- JUnit tests -->
+    <dependency>
+    	<groupId>org.junit.jupiter</groupId>
+    	<artifactId>junit-jupiter</artifactId>
+    	<version>5.10.0</version> 
+    	<scope>test</scope>
+	</dependency>
 
     <!-- JAXB API (if needed) -->
     <dependency>
