@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Country {
@@ -23,7 +24,14 @@ public class Country {
 	
 	@OneToMany(mappedBy = "country")
     private List<Address> addresses = new ArrayList<>();
-
+	
+	public Country(@NotNull String aCountryName)
+	{
+		Objects.requireNonNull(aCountryName, "aCountryName");
+		
+		this.countryName = aCountryName;
+	}
+	
 	public Long getId() {
 		return id;
 	}
