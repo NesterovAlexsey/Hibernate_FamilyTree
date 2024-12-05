@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import tree.config.HibernateUtil;
 import tree.dao.CountryDaoImpl;
+import tree.dao.PersonDaoImpl;
 import tree.model.Country;
 import tree.model.Person;
 
@@ -46,8 +47,22 @@ public class App {
 	 */
 	private static void savePerson() 
 	{
-			// TODO Auto-generated method stub
+		PersonDaoImpl personDao = new PersonDaoImpl( Person.class );
+		Transaction transaction = null;
+		
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		{
+			transaction = session.beginTransaction();
+			Person person = new Person( "Alex", "Nesterov" );
+			personDao.save( person );
 			
+			Person personFromDb = personDao.findById( person.getId() );
+			//TODO: add logger here
+		}
+		catch (Exception e)
+		{
+		
+		}	
 	}
 		
 		

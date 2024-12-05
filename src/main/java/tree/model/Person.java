@@ -54,6 +54,23 @@ public class Person {
 	
 	//We should add Address, as ManyToOne, and also from-antill
 
+	//Empty constructor
+	public Person()
+	{
+		
+	}
+	
+	/**
+	 * Create object Person
+	 * @param aName
+	 * @param aFamilieName
+	 */
+	public Person(String aName, String aFamilieName)
+	{
+		this.firstName = aName;
+		this.familyName = aFamilieName;
+	}
+	
 	public String getFamilyName() {
 		return familyName;
 	}
