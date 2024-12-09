@@ -11,8 +11,8 @@ public class PersonDaoImpl extends GenericDaoImpl<Person, Long> implements Perso
 	 * Create Dao object for person
 	 * @param entityClass
 	 */
-	public PersonDaoImpl(Class<Person> entityClass) {
-		super(entityClass, HibernateUtil.getSessionFactory());
+	public PersonDaoImpl(Class<Person> entityClass, SessionFactory aSessionFactory) {
+		super(entityClass, aSessionFactory);
 	}
 
 }

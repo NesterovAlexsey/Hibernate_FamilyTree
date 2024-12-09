@@ -47,21 +47,27 @@ public class App {
 	 */
 	private static void savePerson() 
 	{
-		PersonDaoImpl personDao = new PersonDaoImpl( Person.class );
 		Transaction transaction = null;
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
+			PersonDaoImpl personDao = new PersonDaoImpl( Person.class, HibernateUtil.getSessionFactory() );
+			
 			transaction = session.beginTransaction();
 			Person person = new Person( "Alex", "Nesterov" );
 			personDao.save( person );
 			
 			Person personFromDb = personDao.findById( person.getId() );
-			//TODO: add logger here
+			logger.info(String.format("Person %s was added to the db", personFromDb.toString()));
+			
+			transaction.commit();
 		}
 		catch (Exception e)
 		{
-		
+			if (transaction != null)
+			{
+				transaction.rollback();
+			}
 		}	
 	}
 		
