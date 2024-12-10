@@ -26,9 +26,9 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements Gene
 	}
 
 	@Override
-	public void save(T entity) 
+	public void save(T entity, Session aSession) 
 	{
-		getSession().save(entity);		
+		aSession.save(entity);		
 	}
 
 	@Override
@@ -38,9 +38,9 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements Gene
 	}
 
 	@Override
-	public List<T> findAll() 
+	public List<T> findAll(Session aSession) 
 	{
-		return getSession()
+		return aSession
 				.createQuery("from " + entityClass.getName(), entityClass )
 				.getResultList();
 	}

@@ -27,7 +27,7 @@ public class App {
 	 */
 	public static void main(String[] args) {
 		
-		savePerson();
+	//	savePerson();
 		saveCountry();
 		HibernateUtil.shutdown();
 		
@@ -38,7 +38,24 @@ public class App {
 	 */
 	private static void saveCountry() 
 	{
-			// TODO Auto-generated method stub
+		//TODO add the try-catch
+		//TODO add logger
+		
+		SessionFactory addCountrySession = HibernateUtil.getSessionFactory();
+		Session session = addCountrySession.openSession();
+		Transaction transactionForCountry = session.beginTransaction();
+		
+		Country testCountry = new Country("Test Country");
+		CountryDaoImpl countryDaoImpl = new CountryDaoImpl(Country.class, addCountrySession);
+		
+		countryDaoImpl.save( testCountry, session );
+		countryDaoImpl.save( new Country("TestCountry2"), session );
+
+		transactionForCountry.commit();
+	
+		System.out.println("***************Countrys: " + countryDaoImpl.findAll( session ).toString());
+		
+		session.close();
 			
 	}
 	
@@ -55,7 +72,7 @@ public class App {
 			
 			transaction = session.beginTransaction();
 			Person person = new Person( "Alex", "Nesterov" );
-			personDao.save( person );
+			personDao.save( person, session );
 			
 			Person personFromDb = personDao.findById( person.getId() );
 			logger.info(String.format("Person %s was added to the db", personFromDb.toString()));

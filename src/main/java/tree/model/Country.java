@@ -17,8 +17,8 @@ public class Country {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
+	private Long id;	
+
 	@Column(nullable = false, length = 100, unique = true)
 	private String countryName;
 	
@@ -61,6 +61,11 @@ public class Country {
 		return Objects.hash(addresses, countryName, id);
 	}
 
+	@Override
+	public String toString() {
+		return "Country [id=" + id + ", countryName=" + countryName + ", addresses=" + addresses + "]";
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
