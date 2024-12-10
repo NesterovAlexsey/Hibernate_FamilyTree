@@ -38,25 +38,31 @@ public class App {
 	 */
 	private static void saveCountry() 
 	{
-		//TODO add the try-catch
 		//TODO add logger
 		
 		SessionFactory addCountrySession = HibernateUtil.getSessionFactory();
-		Session session = addCountrySession.openSession();
-		Transaction transactionForCountry = session.beginTransaction();
 		
-		Country testCountry = new Country("Test Country");
-		CountryDaoImpl countryDaoImpl = new CountryDaoImpl(Country.class, addCountrySession);
-		
-		countryDaoImpl.save( testCountry, session );
-		countryDaoImpl.save( new Country("TestCountry2"), session );
-
-		transactionForCountry.commit();
-	
-		System.out.println("***************Countrys: " + countryDaoImpl.findAll( session ).toString());
-		
-		session.close();
+		try(Session session = addCountrySession.openSession())
+		{
+			Transaction transactionForCountry = session.beginTransaction();
 			
+			Country testCountry = new Country("Test Country");
+			CountryDaoImpl countryDaoImpl = new CountryDaoImpl(Country.class, addCountrySession);
+			
+			countryDaoImpl.save( testCountry, session );
+			countryDaoImpl.save( new Country("TestCountry2"), session );
+			
+			transactionForCountry.commit();
+			
+			logger.info("Countrys was added succesfully: " + countryDaoImpl.findAll( session ).toString());
+			
+			session.close();			
+		}
+		catch (Exception e)
+		{
+			logger.error("Exception during opening the session in App.class: ", e);
+		}
+		
 	}
 	
 	/**

@@ -46,7 +46,7 @@ public class CountryDaoImplTest {
 	{
 		var testCountry = new Country( "Ukraine" );
 		
-		undertest.save( testCountry );
+		undertest.save( testCountry, this.session );
 		
 		Country resultCountry = undertest.findById( testCountry.getId() );
 		assertNotNull( resultCountry );
@@ -59,10 +59,10 @@ public class CountryDaoImplTest {
 		var firstCountry = new Country( "Germany" );
 		var secondCountry = new Country( "Spanish" );
 		
-		undertest.save( firstCountry );
-		undertest.save( secondCountry );
+		undertest.save( firstCountry, this.session );
+		undertest.save( secondCountry, this.session );
 		
-		List<Country> result = undertest.findAll();
+		List<Country> result = undertest.findAll( this.session );
 		assertEquals(2, result.size());		
 	}
 	
@@ -70,7 +70,7 @@ public class CountryDaoImplTest {
 	void testDeleteCountry()
 	{
 		var deleteCountry = new Country( "TestCountry" );
-		undertest.save( deleteCountry );
+		undertest.save( deleteCountry, this.session );
 		
 		undertest.delete( deleteCountry );
 		Country result = undertest.findById( deleteCountry.getId() );
