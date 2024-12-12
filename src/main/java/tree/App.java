@@ -12,8 +12,6 @@ import tree.dao.PersonDaoImpl;
 import tree.model.Country;
 import tree.model.Person;
 
-//TODO - add country, Tests and Address, tests and Persons
-
 public class App {
 
 	/**
@@ -27,8 +25,11 @@ public class App {
 	 */
 	public static void main(String[] args) {
 		
-	//	savePerson();
-		saveCountry();
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+	
+		saveCountry( sessionFactory );
+		savePerson( sessionFactory );
+		
 		HibernateUtil.shutdown();
 		
 	}
@@ -36,12 +37,10 @@ public class App {
 	/**
 	 * Method for saving Country in db. 
 	 */
-	private static void saveCountry() 
+	private static void saveCountry( SessionFactory addCountrySession ) 
+	
 	{
-		//TODO add logger
-		
-		SessionFactory addCountrySession = HibernateUtil.getSessionFactory();
-		
+				
 		try(Session session = addCountrySession.openSession())
 		{
 			Transaction transactionForCountry = session.beginTransaction();
@@ -68,16 +67,19 @@ public class App {
 	/**
 	 * Method for saving Person in db. 
 	 */
-	private static void savePerson() 
+	private static void savePerson( SessionFactory aSessionFactory ) 
 	{
-		Transaction transaction = null;
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
-			PersonDaoImpl personDao = new PersonDaoImpl( Person.class, HibernateUtil.getSessionFactory() );
+			Transaction transaction = session.beginTransaction(); 
 			
-			transaction = session.beginTransaction();
+			PersonDaoImpl personDao = new PersonDaoImpl( Person.class, HibernateUtil.getSessionFactory() );			
 			Person person = new Person( "Alex", "Nesterov" );
+			
+			CountryDaoImpl countryDaoImpl = new CountryDaoImpl(Country.class, aSessionFactory);
+			person.setCountry(countryDaoImpl);
+			
 			personDao.save( person, session );
 			
 			Person personFromDb = personDao.findById( person.getId() );
@@ -94,45 +96,4 @@ public class App {
 		}	
 	}
 		
-		
-//		//Start session with db
-//		Session session = HibernateUtil.getSessionFactory().openSession();		
-//		//Start the transaction
-//		Transaction transaction = session.beginTransaction();
-//				
-//		//Create the person
-//		Person person = new Person();
-//		person.setFirstName("Alex");
-//		person.setFamilyName("Nesterov");
-//		person.setProfession("Developer");
-//		
-//		//Method save was deprecated
-//		session.persist(person);
-//		
-//		//Commit transaction 
-//		transaction.commit();
-//		
-//		Long personId = person.getId();
-//		Session newSession = HibernateUtil.getSessionFactory().openSession();
-//		Person personFromDB = newSession.get(Person.class, personId);
-//		
-//		System.out.println("************Person from db: " + personFromDB);
-//		
-//		//Close the session, close the connection to db
-//		newSession.close();
-//		session.close();	
-//		
-//		SessionFactory addCountrySession = HibernateUtil.getSessionFactory();
-//		Session session2 = addCountrySession.openSession();
-//		Transaction transaction2 = session2.beginTransaction();
-//		Country testCountry = new Country("TestCountry");
-//		CountryDaoImpl countryDaoImpl = new CountryDaoImpl(Country.class, addCountrySession);
-//		countryDaoImpl.save( testCountry );
-//		countryDaoImpl.save( new Country("TestCountry2") );
-//		transaction2.commit();
-//		
-//		System.out.println("***************Countrys: " + countryDaoImpl.findAll().toString());
-//		
-//		session2.close();
-
 }

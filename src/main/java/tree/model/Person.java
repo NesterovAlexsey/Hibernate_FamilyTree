@@ -45,6 +45,9 @@ public class Person {
 	@Column
 	private String description;
 	
+	@Column
+	private Country country;
+
 	@OneToMany( mappedBy="parent", cascade = CascadeType.ALL)
 	private List <Person> children;
 	
@@ -77,6 +80,14 @@ public class Person {
 
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+	
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	public String getFirstName() {

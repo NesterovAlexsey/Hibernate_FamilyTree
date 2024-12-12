@@ -2,6 +2,8 @@ package tree.service;
 
 import java.util.List;
 
+import org.hibernate.Session;
+
 import tree.dao.CountryDaoIf;
 import tree.model.Country;
 
@@ -14,9 +16,9 @@ public class CountryService {
 		this.countryDao = aCountryDao;
 	}
 	
-	public void addCountry(Country aCountry) 
+	public void addCountry(Country aCountry, Session aSession) 
 	{
-		countryDao.save(aCountry);
+		countryDao.save(aCountry, aSession);
 	}
 	
 	public void updateCountry(Country aCountry)
@@ -34,8 +36,8 @@ public class CountryService {
 		return countryDao.findById( aCountryId );
 	}
 	
-	public List<Country> findAllCountries()
+	public List<Country> findAllCountries( Session aSession )
 	{
-		return countryDao.findAll();
+		return countryDao.findAll( aSession );
 	}
 }
