@@ -10,16 +10,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table( name = "country" )
 public class Country {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;	
 
-	@Column(nullable = false, length = 100, unique = true)
+	@Column(nullable = false, length = 100, unique = true, name = "country_name")
 	private String countryName;
 	
 	@OneToMany(mappedBy = "country")

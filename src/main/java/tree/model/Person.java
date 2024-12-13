@@ -45,7 +45,8 @@ public class Person {
 	@Column
 	private String description;
 	
-	@Column
+	@ManyToOne
+	@JoinColumn( name = "country_id" )
 	private Country country;
 
 	@OneToMany( mappedBy="parent", cascade = CascadeType.ALL)

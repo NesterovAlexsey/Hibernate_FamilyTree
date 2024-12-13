@@ -1,22 +1,22 @@
 package tree.dao;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import tree.model.Country;
 
 public class CountryDaoImpl extends GenericDaoImpl<Country, Long> implements CountryDaoIf {
-
-	SessionFactory sessionFactory;
 	
 	public CountryDaoImpl(Class<Country> entityClass, SessionFactory aSessionFactory) {
-		super(entityClass, aSessionFactory);
-		this.sessionFactory = aSessionFactory;
+		super(entityClass, aSessionFactory);		
 	}
 	
-	//TODO - add posibility to find Country by name
-	public Country findCountryByName(String name) 
+	public Country findCountryByName(String name, Session session) 
 	{
-		return sessionFactory.getCurrentSession().byId(name)
+		return session.createQuery("FROM Country WHERE countryName = :name", Country.class)
+				.setParameter("name", name)
+				.uniqueResult();
+		
 	}
 	
 }

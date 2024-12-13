@@ -25,10 +25,13 @@ public class App {
 	 */
 	public static void main(String[] args) {
 		
+		//Later will come from other class
+		String countryName = "Test Country";
+
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-	
-		saveCountry( sessionFactory );
-		savePerson( sessionFactory );
+		
+		saveCountry( sessionFactory, countryName );
+		savePerson( sessionFactory, countryName );
 		
 		HibernateUtil.shutdown();
 		
@@ -37,7 +40,7 @@ public class App {
 	/**
 	 * Method for saving Country in db. 
 	 */
-	private static void saveCountry( SessionFactory addCountrySession ) 
+	private static void saveCountry( SessionFactory addCountrySession, String aCountryName ) 
 	
 	{
 				
@@ -45,7 +48,7 @@ public class App {
 		{
 			Transaction transactionForCountry = session.beginTransaction();
 			
-			Country testCountry = new Country("Test Country");
+			Country testCountry = new Country( aCountryName );
 			CountryDaoImpl countryDaoImpl = new CountryDaoImpl(Country.class, addCountrySession);
 			
 			countryDaoImpl.save( testCountry, session );
@@ -59,7 +62,7 @@ public class App {
 		}
 		catch (Exception e)
 		{
-			logger.error("Exception during opening the session in App.class: ", e);
+			logger.error("Exception during opening the session in App.class, method saveCountry: ", e);
 		}
 		
 	}
@@ -67,7 +70,7 @@ public class App {
 	/**
 	 * Method for saving Person in db. 
 	 */
-	private static void savePerson( SessionFactory aSessionFactory ) 
+	private static void savePerson( SessionFactory aSessionFactory, String aCountryName ) 
 	{
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
@@ -77,23 +80,31 @@ public class App {
 			PersonDaoImpl personDao = new PersonDaoImpl( Person.class, HibernateUtil.getSessionFactory() );			
 			Person person = new Person( "Alex", "Nesterov" );
 			
-			CountryDaoImpl countryDaoImpl = new CountryDaoImpl(Country.class, aSessionFactory);
-			person.setCountry(countryDaoImpl);
+			//added the country to the person
+			CountryDaoImpl countryDaoImpl = new CountryDaoImpl( Country.class, aSessionFactory );
+			Country country = countryDaoImpl.findCountryByName( aCountryName, session );
+			if ( country != null) 
+			{
+				person.setCountry( country );
+				logger.info( String.format("Country %s with id %d was added to the person %s", 
+						aCountryName, country.getId(), person.toString()));
+			}
+			else
+			{
+				logger.error( String.format( "Country with name '%s' was not found.", aCountryName ) );
+			}
 			
 			personDao.save( person, session );
 			
 			Person personFromDb = personDao.findById( person.getId() );
-			logger.info(String.format("Person %s was added to the db", personFromDb.toString()));
+			logger.info( String.format( "Person %s was added to the db", personFromDb.toString() ) );
 			
 			transaction.commit();
 		}
 		catch (Exception e)
 		{
-			if (transaction != null)
-			{
-				transaction.rollback();
-			}
+			logger.error("Exception during opening the session in App.class, method savePerson: ", e);			
 		}	
 	}
-		
+	
 }
