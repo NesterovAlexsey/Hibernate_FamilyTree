@@ -96,7 +96,7 @@ public class App {
 			
 			personDao.save( person, session );
 			
-			Person personFromDb = personDao.findById( person.getId() );
+			Person personFromDb = personDao.findById( person.getId(), session );
 			logger.info( String.format( "Person %s was added to the db", personFromDb.toString() ) );
 			
 			transaction.commit();

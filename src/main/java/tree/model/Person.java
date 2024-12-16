@@ -185,7 +185,7 @@ public class Person {
 	public String toString() {
 		return "Person [id=" + id + ", familyName=" + familyName + ", lastName=" + firstName + ", middleName="
 				+ middleName + ", dateOfBirth=" + dateOfBirth + ", dateOfDeath=" + dateOfDeath + ", profession="
-				+ profession + ", description=" + description + ", children=" + children + ", parent=" + parent + "]";
+				+ profession + ", description=" + description + ", children=" + children + ", parent=" + parent + ", country=" + this.getCountry() +"]";
 	}
 	
 }

@@ -27,6 +27,13 @@ public class Country {
 	@OneToMany(mappedBy = "country")
     private List<Address> addresses = new ArrayList<>();
 	
+	//Empty constructor for Hibernet
+	public Country() 
+	{
+		
+	}
+	
+	
 	public Country(@NotNull String aCountryName)
 	{
 		Objects.requireNonNull(aCountryName, "aCountryName");

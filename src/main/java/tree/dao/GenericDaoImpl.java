@@ -32,9 +32,9 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> implements Gene
 	}
 
 	@Override
-	public T findById(ID id) 
+	public T findById(ID id, Session aSession) 
 	{
-		return getSession().get(entityClass, id);
+		return aSession.get(entityClass, id);
 	}
 
 	@Override

@@ -13,7 +13,7 @@ public interface GenericDaoIf<T, ID> {
 	
 	void save(T entity, Session aSession);
 
-	T findById(ID id);
+	T findById(ID id, Session aSession);
 	
 	List<T> findAll( Session aSession );
 	
