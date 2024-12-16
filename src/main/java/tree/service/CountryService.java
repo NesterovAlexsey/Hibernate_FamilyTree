@@ -31,9 +31,9 @@ public class CountryService {
 		countryDao.delete(aCountry);
 	}
 	
-	public Country findCountry(Long aCountryId)
+	public Country findCountry(Long aCountryId, Session aSession)
 	{
-		return countryDao.findById( aCountryId );
+		return countryDao.findById( aCountryId, aSession );
 	}
 	
 	public List<Country> findAllCountries( Session aSession )

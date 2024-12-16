@@ -48,7 +48,7 @@ public class CountryDaoImplTest {
 		
 		undertest.save( testCountry, this.session );
 		
-		Country resultCountry = undertest.findById( testCountry.getId() );
+		Country resultCountry = undertest.findById( testCountry.getId(), this.session );
 		assertNotNull( resultCountry );
 		assertEquals( testCountry.getCountryName(), resultCountry.getCountryName() );
 	}
@@ -73,7 +73,7 @@ public class CountryDaoImplTest {
 		undertest.save( deleteCountry, this.session );
 		
 		undertest.delete( deleteCountry );
-		Country result = undertest.findById( deleteCountry.getId() );
+		Country result = undertest.findById( deleteCountry.getId(), this.session );
 		
 		assertNull(result);
 	}
