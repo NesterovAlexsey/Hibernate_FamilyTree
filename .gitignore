@@ -34,3 +34,15 @@ Videos/
 *.cache
 *.exe
 *.zip
+
+# Директория сборки Maven
+target/
+
+# Настройки IDE (Eclipse)
+.classpath
+.project
+.settings/
+
+# Файлы операционной системы
+.DS_Store
+Thumbs.db
