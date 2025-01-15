@@ -1,48 +1,18 @@
-# Игнорируем системные папки и файлы Windows
-Anwendungsdaten/
-AppData/
-Cookies/
-Druckumgebung/
-Eigene Dateien/
-Lokale Einstellungen/
-Netzwerkumgebung/
-Recent/
-SendTo/
-Startmenü/
-Vorlagen/
-ntuser.dat*
-
-# Игнорируем пользовательские папки
-3D Objects/
-Contacts/
-Creative Cloud Files/
-Desktop/
-Documents/
-Downloads/
-Favorites/
-Links/
-Music/
-OneDrive/
-Pictures/
-Saved Games/
-Searches/
-Videos/
-
-# Игнорируем временные и конфигурационные файлы
-*.log
-*.tmp
-*.cache
-*.exe
-*.zip
-
-# Директория сборки Maven
+# Maven target directory
 target/
 
-# Настройки IDE (Eclipse)
+# Eclipse specific files
 .classpath
 .project
 .settings/
 
-# Файлы операционной системы
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+
+# Log files
+*.log
+
+# OS generated files
 .DS_Store
 Thumbs.db
