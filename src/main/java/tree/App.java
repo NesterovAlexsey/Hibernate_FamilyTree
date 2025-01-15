@@ -86,7 +86,7 @@ public class App {
 			if ( country != null) 
 			{
 				person.setCountry( country );
-				logger.info( String.format("Country %s with id %d was added to the person %s", 
+				logger.info( String.format("Country <%s> with id <%d> was added to the person <%s>", 
 						aCountryName, country.getId(), person.toString()));
 			}
 			else
